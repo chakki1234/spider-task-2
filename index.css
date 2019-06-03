@@ -1,0 +1,15 @@
+canvas{
+  border : 1px solid black;
+}
+
+#right{
+	position: absolute;
+	left: 46%;
+
+}
+
+#left{
+
+	position: absolute;
+	left: 52%;
+}
