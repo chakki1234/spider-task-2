@@ -3,6 +3,9 @@ var canvas = document.querySelector("canvas");
 var c = canvas.getContext("2d");
 var right = document.querySelector("#right");
 var left = document.querySelector("#left");
+var start = document.querySelector("#start");
+var stop = document.querySelector("#stop");
+
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight-150;
@@ -31,11 +34,21 @@ var sma = canvas.height;
         	listblock[k].dy = 0.2;
         	listblock[k].width = Math.random()*100;
         	listblock[k].height = Math.random()*100;
-        	listblock[k].x = Math.random()*canvas.width;
+        	listblock[k].x = canvas.width/2;
     
        }
 
+var play = 1;
+var touched = 0;
 
+start.addEventListener("click", function(){
+ play = 1;
+});
+
+
+stop.addEventListener("click", function(){
+play = 0;
+});
 
 
 right.addEventListener("click" , function(){
@@ -81,28 +94,38 @@ function findsmall(){
            {
 
 
-            	 if(redx>=listblock[r].x && redx<=listblock[r].x+listblock[r].width && redy>=listblock[r].y && redy<=listblock[r].y+listblock[r].height)
+            	 if(redx>=listblock[r].x-radiussmall && redx<=listblock[r].x+listblock[r].width+radiussmall && redy>=listblock[r].y && redy<=listblock[r].y+listblock[r].height)
                  {
-                 console.log("game over");
-                 break;
-                 /*alert("game over");
-                 document.location.reload();
-                 clearInterval(interval);
-                 */}
+                  console.log("game over");
+                  touched = 1;
+                  /* break;
+                  alert("game over");
+                  document.location.reload();
+                  clearInterval(interval);
+                  */}
 
-                 if(bluex>=listblock[r].x && bluex<=listblock[r].x+listblock[r].width && bluey>=listblock[r].y && bluey<=listblock[r].y+listblock[r].height)
+                /* else 
+
+               {*/
+                 	if(bluex>=listblock[r].x-radiussmall && bluex<=listblock[r].x+listblock[r].width+radiussmall && bluey>=listblock[r].y && bluey<=listblock[r].y+listblock[r].height)
+               
                 {
                  console.log("game over");
-                 break;
-                 /*alert("game over");
+                  touched = 1;
+                /* break;
+                 alert("game over");
                document.location.reload();
                  clearInterval(interval);
-                 */}
+                 */
+                 }
 
-/*
-                  if((redy+radiussmall>=listblock[r].y && redy-radiussmall<=listblock[r].y+listblock[r].height) && (redx>=listblock[r].x && redx<=listblock[r].x+listblock[r].width))
+
+             /*    else 
+               {
+                  if(redy>=listblock[r].y-radiussmall && redy<=listblock[r].y+listblock[r].height+radiussmall && redx>=listblock[r].x && redx<=listblock[r].x+listblock[r].width)
                  {
                  console.log("game over");	
+                  touched = 1;
                  alert("game over");
                  break();
                  document.location.reload();
@@ -110,18 +133,26 @@ function findsmall(){
                  }
 
                  
-                if((bluey+radiussmall>=listblock[r].y && bluey-radiussmall<=listblock[r].y+listblock[r].height) && (bluex>=listblock[r].x && bluex<=listblock[r].x+listblock[r].width))
+                else 
+                {
+                   if(bluey>=listblock[r].y-radiussmall && bluey<=listblock[r].y+listblock[r].height+radiussmall && bluex>=listblock[r].x && bluex<=listblock[r].x+listblock[r].width)
                  {
                  console.log("game over");
+                  touched = 1;
                  alert("game over");
                  document.location.reload();
                  clearInterval(interval);
-                 }*/
-
+                }
+               }
+              }*/
+             }          
             }
 
-
- }
+         /*  if(touched==1)
+           	{
+           	alert("game over");
+            
+ }*/
 
  function draw(){
 
@@ -133,11 +164,14 @@ function findsmall(){
             	listblock[i].y=sma-250;
             	listblock[i].width = Math.random()*100;
             	listblock[i].height = Math.random()*100;
-            	listblock[i].x = Math.random()*canvas.width;
+            	listblock[i].x = canvas.width/2;
             	listblock[i].dy = listblock[i].dy+0.001;
             } 
           
 		        c.fillRect(canvas.width/2, listblock[i].y, listblock[i].width, listblock[i].height);
+		        /*console.log("box "+i+"x: "+listblock[i].x+" y: "+listblock[i].y);
+		        console.log(" ");
+*/
 		       
                  
         
@@ -155,7 +189,10 @@ function findsmall(){
 
 function animate()
 {       
-	    
+	    if(play==1)
+	   {
+
+	    	
 	    c.clearRect(0 , 0, canvas.width, canvas.height);
 		c.beginPath();
 		c.strokeStyle = "purple";
@@ -201,6 +238,8 @@ function animate()
 
         incrementy();
  
- }
+   }
+}
+
 
 setInterval(animate, 1);
