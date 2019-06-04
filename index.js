@@ -35,7 +35,7 @@ var sma = canvas.height;
 
         	listblock[k].y = 0-150*k;
         	listblock[k].dy = 0.5;0
-        	listblock[k].width = Math.random()*150;
+        	listblock[k].width = Math.random()*125 + 25;
         	listblock[k].height = Math.random()*25 + 25;
         	listblock[k].x = Math.random()*200 + canvas.width/2 - 150;
     
@@ -167,7 +167,7 @@ function findsmall(){
             {
             
             	listblock[i].y=sma-250;
-            	listblock[i].width = Math.random()*150;
+            	listblock[i].width = Math.random()*125 + 25;
             	listblock[i].height = Math.random()*25 + 25;
             	listblock[i].x = Math.random()*200 + canvas.width/2 - 150;
             	listblock[i].dy = listblock[i].dy+0.001;
@@ -199,6 +199,20 @@ function incrementy(){
  	}
  }
 
+ function drawballs(){
+
+        c.beginPath();
+	    c.fillStyle = "red";
+        c.arc(redx, redy, radiussmall, 0, Math.PI*2, false);
+        c.fill();
+
+        c.beginPath()
+        c.fillStyle = "blue";
+        c.arc(bluex, bluey, radiussmall, 0, Math.PI*2, false);
+        c.fill();
+        
+ }
+
 
 function animate()
 {       
@@ -220,16 +234,6 @@ function animate()
 		c.stroke();
 	     
 
-        c.beginPath();
-	    c.fillStyle = "red";
-        c.arc(redx, redy, radiussmall, 0, Math.PI*2, false);
-        c.fill();
-
-        c.beginPath()
-        c.fillStyle = "blue";
-        c.arc(bluex, bluey, radiussmall, 0, Math.PI*2, false);
-        c.fill();
-        
         /*c.beginPath();
         c.save();
         c.translate(xc, yc);
@@ -253,9 +257,10 @@ function animate()
         findsmall();
 
         draw();
-        
 
         score();
+        
+        drawballs();
 
         collisiondetect();
 
