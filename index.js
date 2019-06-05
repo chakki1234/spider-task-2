@@ -106,7 +106,7 @@ function findsmall(){
 
             	 if(redx>=listblock[r].x-radiussmall && redx<=listblock[r].x+listblock[r].width+radiussmall && redy>=listblock[r].y && redy<=listblock[r].y+listblock[r].height)
                  {
-                  console.log("game over");
+                  
                   touched = 1;
                   /* break;
                   alert("game over");
@@ -117,14 +117,14 @@ function findsmall(){
                  else if(bluex>=listblock[r].x-radiussmall && bluex<=listblock[r].x+listblock[r].width+radiussmall && bluey>=listblock[r].y && bluey<=listblock[r].y+listblock[r].height)
                
                 {
-                 console.log("game over");
+                 
                   touched = 1;
                  }
 
 
                  else if(redy>=listblock[r].y-radiussmall && redy<=listblock[r].y+listblock[r].height+radiussmall && redx>=listblock[r].x && redx<=listblock[r].x+listblock[r].width)
                  {
-                 console.log("game over");	
+                 	
                   touched = 1;
              
                  }
@@ -132,8 +132,7 @@ function findsmall(){
                  
                 else if(bluey>=listblock[r].y-radiussmall && bluey<=listblock[r].y+listblock[r].height+radiussmall && bluex>=listblock[r].x && bluex<=listblock[r].x+listblock[r].width)
                  {
-                 console.log("game over");
-                  touched = 1;
+                   touched = 1;
                 
                 }
 
