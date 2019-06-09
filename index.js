@@ -6,6 +6,7 @@ var left = document.querySelector("#left");
 var start = document.querySelector("#start");
 var stop = document.querySelector("#stop");
 var playagain = document.querySelector("#playagain");
+var body = document.querySelector("body");
 var scorecount = 0;
 
 canvas.width = window.innerWidth;
@@ -45,6 +46,27 @@ var play = 1;
 var touched = 0;
 
 
+body.addEventListener("keydown", function(event){
+
+ if(event.which==37)
+ {
+  angle-=(20*Math.PI/180);
+   redx = xc+Math.cos(angle)*radius;
+   redy = yc+Math.sin(angle)*radius;
+   bluex = xc+Math.cos(Math.PI+angle)*radius;
+   bluey = yc+Math.sin(Math.PI+angle)*radius;
+ }
+
+ if(event.which==39)
+ {
+        angle+=(20*Math.PI/180);
+        redx = xc+Math.cos(angle)*radius;
+        redy = yc+Math.sin(angle)*radius;
+        bluex = xc+Math.cos(Math.PI+angle)*radius;
+        bluey = yc+Math.sin(Math.PI+angle)*radius;
+ }
+
+});
 
 playagain.addEventListener("click", function(){
  document.location.reload();
